@@ -20,17 +20,8 @@ public class Lesson3 {
             num = random.nextInt(9);
             for (int i = 0; i < 3; i++) {
 
-                 while (true) {
-                     System.out.println("Отгадайте число от 0 до 9");
-                     try{
-                        userAnswer = scanner.nextInt();
-                        break;
-                     } catch (Exception ex) {
-                        System.out.println("Вы ввели недопустимое значение!" );
-                        scanner.close();
-//                        continue;
-                     }
-                }
+                System.out.println("Отгадайте число от 0 до 9");
+                userAnswer = scanner.nextInt();
 
                 if (userAnswer == num) {
                     message = "Победа!";
@@ -54,13 +45,10 @@ public class Lesson3 {
         System.out.println(mes);
 
         while (true) {
-            System.out.println("Повторить игру ещё раз? 1 – да / 0 – нет");
-            try {
-                yesOrNo = sc.nextInt();
-            } catch (Exception ex) {
-                System.out.println("Недопустимый ответ!");
-                continue;
-            }
+            System.out.println("Повторить игру еще раз? 1 – да / 0 – нет");
+
+            yesOrNo = sc.nextInt();
+
             if (yesOrNo == 0) {
                 sc.close();
                 return false;
