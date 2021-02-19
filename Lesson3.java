@@ -7,6 +7,9 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Lesson3 {
+
+    static Scanner scanner = new Scanner(System.in);
+
     public static void main(String[] args) {
         go();
     }
@@ -16,15 +19,23 @@ public class Lesson3 {
         int num;
         int userAnswer;
         String message = null;
-        Scanner scanner = new Scanner(System.in);
+
         Random random = new Random();
 
         do {
             num = random.nextInt(9);
+
             for (int i = 0; i < 3; i++) {
 
                 System.out.println("Отгадайте число от 0 до 9");
-                userAnswer = scanner.nextInt();
+
+                if (scanner.hasNextInt()) {
+                    userAnswer = scanner.nextInt();
+                } else {
+                    System.out.println("Неверный ввод!");
+                    scanner.nextLine();
+                    continue;
+                }
 
                 if (userAnswer == num) {
                     message = "Победа!";
@@ -43,21 +54,26 @@ public class Lesson3 {
 
     static boolean continueGame (String mes) {
         int yesOrNo = 0;
-        Scanner sc = new Scanner(System.in);
+        //Scanner sc = new Scanner(System.in);
 
         System.out.println(mes);
 
         while (true) {
             System.out.println("Повторить игру еще раз? 1 – да / 0 – нет");
 
-            yesOrNo = sc.nextInt();
-
-            if (yesOrNo == 0) {
-                sc.close();
-                return false;
-            } else if (yesOrNo == 1) {
-                return true;
+            if (scanner.hasNextInt()) {
+                yesOrNo = scanner.nextInt();
+                if (yesOrNo == 0) {
+                    scanner.close();
+                    return false;
+                } else if (yesOrNo == 1) {
+                    return true;
+                } else {
+                    scanner.nextLine();
+                    System.out.println("Недопустимый ответ!");
+                }
             } else {
+                scanner.nextLine();
                 System.out.println("Недопустимый ответ!");
             }
         }
